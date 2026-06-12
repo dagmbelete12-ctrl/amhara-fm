@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amhara FM Debre Birhan - Live</title>
+    <title>አማራ ኤፍ ኤም ደብረ ብርሃን - ቀጥታ ስርጭት</title>
     <style>
         :root {
             --primary: #0056b3;
             --secondary: #f8f9fa;
             --dark: #212529;
             --accent: #dc3545;
+            --fb-color: #1877f2;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -34,17 +35,44 @@
             font-size: 15px;
             opacity: 0.9;
         }
+        .frequencies {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .fb-link {
+            display: inline-block;
+            background-color: var(--fb-color);
+            color: white;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+        .fb-link:hover {
+            background-color: #166fe5;
+            transform: scale(1.05);
+        }
         .container {
             max-width: 600px;
-            margin: 50px auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
         .card {
             background: white;
             border-radius: 8px;
-            padding: 40px 25px;
+            padding: 35px 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             text-align: center;
+            margin-bottom: 25px;
         }
         .card h2 {
             margin-top: 0;
@@ -63,7 +91,7 @@
             border-radius: 50px;
             cursor: pointer;
             transition: transform 0.2s, background-color 0.2s;
-            margin: 30px 0;
+            margin: 25px 0;
             box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
             letter-spacing: 1px;
         }
@@ -85,24 +113,67 @@
             50% { opacity: 1; }
             100% { opacity: 0.6; }
         }
+        .phone-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 20px 0;
+        }
+        .phone-item {
+            display: inline-block;
+            margin: 10px 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .phone-item a {
+            color: var(--primary);
+            text-decoration: none;
+            background-color: var(--secondary);
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: background-color 0.2s;
+        }
+        .phone-item a:hover {
+            background-color: #e2e6ea;
+        }
+        .email-section {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-top: 15px;
+        }
+        .email-link {
+            display: inline-block;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #fff3cd;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 1px solid #ffeeba;
+            transition: background-color 0.2s;
+        }
+        .email-link:hover {
+            background-color: #ffe8a1;
+        }
         footer {
             text-align: center;
             padding: 20px;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
             background-color: var(--dark);
             color: white;
             font-size: 14px;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>አምሃራ ኤፍኤም ደብረ ብርሃን | Amhara FM Debre Birhan</h1>
+        <h1>አማራ ኤፍ ኤም ደብረ ብርሃን | Amhara FM Debre Birhan</h1>
         <p>የአማራ ሚዲያ ኮርፖሬชั่น (AMECO) አባል</p>
+        <div class="frequencies">ሞገድ፦ 91.4 FM & 89.0 FM</div>
+        <br>
+        <a href="https://facebook.com" target="_blank" class="fb-link">👍 ፌስቡክ ገጻችን (Facebook Page)</a>
     </header>
 
     <div class="container">
@@ -115,13 +186,28 @@
             
             <div class="status" id="statusText">የአሁኑ ሁኔታ: ቆሟል (Paused)</div>
             
-            <!-- Hidden Audio Element -->
-            <audio id="radioStream" src="https://link.zeno.fm/eq5nw5e8vp8uv" preload="none"></audio>
+            <!-- Audio Element configured with your Zeno stream -->
+            <audio id="radioStream" src="https://zeno.fm" preload="none"></audio>
+        </div>
+
+        <!-- Contact/Studio Card -->
+        <div class="card">
+            <h2>አድራሻና ግንኙነት (Contact Us)</h2>
+            <p>ወደ ስቱዲዮ በቀጥታ ለመደወል ቁጥሮቹን ይጫኑ፦</p>
+            <ul class="phone-list">
+                <li class="phone-item">📞 <a href="tel:0116811875">011 681 18 75</a></li>
+                <li class="phone-item">📞 <a href="tel:0116812583">011 681 25 83</a></li>
+            </ul>
+            
+            <div class="email-section">
+                <p>በኢሜይል መልዕክት ለመላክ፦</p>
+                <a href="mailto:fmdb91@gmail.com" class="email-link">📧 fmdb91@gmail.com</a>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Amhara Media Corporation (AMECO). All Rights Reserved.</p>
+        <p>&copy; 2026 የአማራ ሚዲያ ኮርፖሬชั่น (AMECO)። መብቱ በሕግ የተጠበቀ ነው።</p>
     </footer>
 
     <script>
@@ -131,7 +217,6 @@
 
         function togglePlay() {
             if (audio.paused) {
-                // Reload stream to prevent playing stale cached audio
                 audio.load(); 
                 audio.play()
                     .then(() => {
