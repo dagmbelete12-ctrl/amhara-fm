@@ -21,57 +21,51 @@
         header {
             background-color: var(--primary);
             color: white;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 26px;
         }
         header p {
-            margin: 5px 0 0 0;
-            font-size: 14px;
+            margin: 8px 0 0 0;
+            font-size: 15px;
             opacity: 0.9;
         }
         .container {
-            max-width: 1200px;
-            margin: 30px auto;
+            max-width: 600px;
+            margin: 50px auto;
             padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
         }
         .card {
             background: white;
             border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 40px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             text-align: center;
         }
         .card h2 {
             margin-top: 0;
             color: var(--primary);
             border-bottom: 2px solid var(--secondary);
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            font-size: 22px;
         }
         .player-btn {
             background-color: var(--accent);
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 18px;
+            padding: 18px 50px;
+            font-size: 20px;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
             transition: transform 0.2s, background-color 0.2s;
-            margin: 20px 0;
+            margin: 30px 0;
             box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+            letter-spacing: 1px;
         }
         .player-btn:hover {
             transform: scale(1.05);
@@ -80,6 +74,7 @@
         .status {
             font-weight: bold;
             color: #6c757d;
+            font-size: 16px;
         }
         .playing {
             color: #28a745;
@@ -90,17 +85,13 @@
             50% { opacity: 1; }
             100% { opacity: 0.6; }
         }
-        iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 8px;
-            background: #e9ecef;
-        }
         footer {
             text-align: center;
             padding: 20px;
-            margin-top: 50px;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
             background-color: var(--dark);
             color: white;
             font-size: 14px;
@@ -111,34 +102,26 @@
 
     <header>
         <h1>አምሃራ ኤፍኤም ደብረ ብርሃን | Amhara FM Debre Birhan</h1>
-        <p>የአማራ ሚዲያ ኮርፖሬሽን (AMECO) አባል</p>
+        <p>የአማራ ሚዲያ ኮርፖሬชั่น (AMECO) አባል</p>
     </header>
 
     <div class="container">
         <!-- Audio Player Card -->
         <div class="card">
             <h2>ቀጥታ ስርጭት (Live Audio Player)</h2>
-            <p>Click the button below to listen to the live stream.</p>
+            <p>በቀጥታ ለማዳመጥ ማጫወቻውን ይጫኑ</p>
             
             <button class="player-btn" id="playBtn" onclick="togglePlay()">▶ PLAY RADIO</button>
             
-            <div class="status" id="statusText">Status: Paused</div>
+            <div class="status" id="statusText">የአሁኑ ሁኔታ: ቆሟል (Paused)</div>
             
             <!-- Hidden Audio Element -->
-            <audio id="radioStream" src="https://stream-02.surfernetwork.com/eq5nw5e8vp8uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJlcTVudzVlOHZwOHV2IiwiaG9zdCI6InN0cmVhbS0wMi5zdXJmZXJuZXR3b3JrLmNvbSIsInJ0dGwiOjUsImp0aSI6Im5WZzJrX0N4UWNTbnhqRGJTUnN3MkEiLCJpYXQiOjE3ODEyOTUyNzksImV4cCI6MTc4MTI5NTMzOX0.lHMUR7T0cVT7LRlAW9_vtmb0qYF_mCVOfwWG6HnhCk4" preload="none"></audio>
-        </div>
-
-        <!-- Radio Garden / Map Card -->
-        <div class="card">
-            <h2>ሬዲዮ ጋርደን (Radio Garden)</h2>
-            <p>Explore nearby stations or view our global placement.</p>
-            <!-- Note: Radio Garden restricts direct embedding. This placeholder simulates the view or lets you link your custom ID. -->
-            <iframe src="https://radio.garden" title="Radio Garden Debre Birhan"></iframe>
+            <audio id="radioStream" src="https://link.zeno.fm/eq5nw5e8vp8uv" preload="none"></audio>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Amhara Media Corporation (AMECO). Built for Amhara FM Debre Birhan.</p>
+        <p>&copy; 2026 Amhara Media Corporation (AMECO). All Rights Reserved.</p>
     </footer>
 
     <script>
@@ -148,22 +131,22 @@
 
         function togglePlay() {
             if (audio.paused) {
-                // Reload stream to prevent playing old cached audio buffer
+                // Reload stream to prevent playing stale cached audio
                 audio.load(); 
                 audio.play()
                     .then(() => {
                         playBtn.innerText = "⏸ PAUSE RADIO";
-                        statusText.innerText = "Status: Playing Live...";
+                        statusText.innerText = "የአሁኑ ሁኔታ: እየተጫወተ ነው... (Playing Live)";
                         statusText.className = "status playing";
                     })
                     .catch(err => {
                         console.error("Playback failed:", err);
-                        statusText.innerText = "Error: Stream unavailable";
+                        statusText.innerText = "ስህተት: ስርጭቱ አልተገኘም (Error: Stream unavailable)";
                     });
             } else {
                 audio.pause();
                 playBtn.innerText = "▶ PLAY RADIO";
-                statusText.innerText = "Status: Paused";
+                statusText.innerText = "የአሁኑ ሁኔታ: ቆሟል (Paused)";
                 statusText.className = "status";
             }
         }
