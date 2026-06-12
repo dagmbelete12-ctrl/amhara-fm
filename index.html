@@ -9,6 +9,7 @@
             --primary: #0056b3;
             --secondary: #f8f9fa;
             --dark: #212529;
+            --accent: #dc3545;
             --fb-color: #1877f2;
         }
         body {
@@ -81,13 +82,18 @@
             font-size: 22px;
         }
         
-        /* Official Zeno Web Player Container Box */
-        .zeno-player-card {
-            min-height: 250px;
-            margin: 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* AMECO-Style Native Audio Player Interface */
+        .ameco-audio-wrapper {
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f1f3f4;
+            border-radius: 50px;
+            max-width: 450px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .ameco-audio-wrapper audio {
+            width: 100%;
+            outline: none;
         }
 
         .phone-list {
@@ -154,14 +160,17 @@
     </header>
 
     <div class="container">
-        <!-- Official Allowed Broadcast Embed Block -->
+        <!-- AMECO Web Browser Style Native Player Block -->
         <div class="card">
             <h2>ቀጥታ ስርጭት (Live Audio Player)</h2>
-            <p>ሬዲዮውን ለማጫወት ከታች ያለውን ማጫወቻ ይጠቀሙ</p>
+            <p>በቀጥታ ለማዳመጥ ከታች ያለውን ማጫወቻ ይጠቀሙ</p>
             
-            <div class="zeno-player-card">
-                <!-- Direct injection of Zeno's official compiled layout -->
-                <script src="https://zeno.fm"></script>
+            <div class="ameco-audio-wrapper">
+                <!-- Direct source implementation matching AMECO app architecture -->
+                <audio controls preload="none">
+                    <source src="https://zeno.fm" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         </div>
 
