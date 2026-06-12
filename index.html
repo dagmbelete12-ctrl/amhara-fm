@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amhara FM Debre Birhan - Live</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #f8f9fa;
+            --dark: #212529;
+            --accent: #dc3545;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+        .player-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+        }
+        .player-btn:hover {
+            transform: scale(1.05);
+            background-color: #c82333;
+        }
+        .status {
+            font-weight: bold;
+            color: #6c757d;
+        }
+        .playing {
+            color: #28a745;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 8px;
+            background: #e9ecef;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            background-color: var(--dark);
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>አምሃራ ኤፍኤም ደብረ ብርሃን | Amhara FM Debre Birhan</h1>
+        <p>የአማራ ሚዲያ ኮርፖሬሽን (AMECO) አባል</p>
+    </header>
+
+    <div class="container">
+        <!-- Audio Player Card -->
+        <div class="card">
+            <h2>ቀጥታ ስርጭት (Live Audio Player)</h2>
+            <p>Click the button below to listen to the live stream.</p>
+            
+            <button class="player-btn" id="playBtn" onclick="togglePlay()">▶ PLAY RADIO</button>
+            
+            <div class="status" id="statusText">Status: Paused</div>
+            
+            <!-- Hidden Audio Element -->
+            <audio id="radioStream" src="https://stream-02.surfernetwork.com/eq5nw5e8vp8uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJlcTVudzVlOHZwOHV2IiwiaG9zdCI6InN0cmVhbS0wMi5zdXJmZXJuZXR3b3JrLmNvbSIsInJ0dGwiOjUsImp0aSI6Im5WZzJrX0N4UWNTbnhqRGJTUnN3MkEiLCJpYXQiOjE3ODEyOTUyNzksImV4cCI6MTc4MTI5NTMzOX0.lHMUR7T0cVT7LRlAW9_vtmb0qYF_mCVOfwWG6HnhCk4" preload="none"></audio>
+        </div>
+
+        <!-- Radio Garden / Map Card -->
+        <div class="card">
+            <h2>ሬዲዮ ጋርደን (Radio Garden)</h2>
+            <p>Explore nearby stations or view our global placement.</p>
+            <!-- Note: Radio Garden restricts direct embedding. This placeholder simulates the view or lets you link your custom ID. -->
+            <iframe src="https://radio.garden" title="Radio Garden Debre Birhan"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Amhara Media Corporation (AMECO). Built for Amhara FM Debre Birhan.</p>
+    </footer>
+
+    <script>
+        const audio = document.getElementById('radioStream');
+        const playBtn = document.getElementById('playBtn');
+        const statusText = document.getElementById('statusText');
+
+        function togglePlay() {
+            if (audio.paused) {
+                // Reload stream to prevent playing old cached audio buffer
+                audio.load(); 
+                audio.play()
+                    .then(() => {
+                        playBtn.innerText = "⏸ PAUSE RADIO";
+                        statusText.innerText = "Status: Playing Live...";
+                        statusText.className = "status playing";
+                    })
+                    .catch(err => {
+                        console.error("Playback failed:", err);
+                        statusText.innerText = "Error: Stream unavailable";
+                    });
+            } else {
+                audio.pause();
+                playBtn.innerText = "▶ PLAY RADIO";
+                statusText.innerText = "Status: Paused";
+                statusText.className = "status";
+            }
+        }
+    </script>
+</body>
+</html>
