@@ -170,7 +170,7 @@
 
     <header>
         <h1>አማራ ኤፍ ኤም ደብረ ብርሃን | Amhara FM Debre Birhan</h1>
-        <p>የአማራ ሚዲያ ኮርፖሬሽን (AMECO) አባል</p>
+        <p>የአማራ ሚዲያ ኮርፖሬชั่น (AMECO) አባል</p>
         <div class="frequencies">ሞገድ፦ 91.4 FM & 89.0 FM</div>
         <br>
         <a href="https://facebook.com" target="_blank" class="fb-link">👍 ፌስቡክ ገጻችን (Facebook Page)</a>
@@ -186,8 +186,11 @@
             
             <div class="status" id="statusText">የአሁኑ ሁኔታ: ቆሟል (Paused)</div>
             
-            <!-- Audio Element configured with your Zeno stream -->
-            <audio id="radioStream" src="https://zeno.fm" preload="none"></audio>
+            <!-- Upgraded Audio Configuration for Zeno Web Broadcasts -->
+            <audio id="radioStream" preload="none">
+                <source src="https://zeno.fm" type="audio/mpeg">
+                <source src="https://zenomedia.com" type="audio/mpeg">
+            </audio>
         </div>
 
         <!-- Contact/Studio Card -->
@@ -207,7 +210,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 የአማራ ሚዲያ ኮርፖሬሽን (AMECO)። መብቱ በሕግ የተጠበቀ ነው።</p>
+        <p>&copy; 2026 የአማራ ሚዲያ ኮርፖሬชั่น (AMECO)። መብቱ በሕግ የተጠበቀ ነው።</p>
     </footer>
 
     <script>
@@ -217,7 +220,11 @@
 
         function togglePlay() {
             if (audio.paused) {
+                // Completely clear buffer and fetch the active stream link
                 audio.load(); 
+                
+                statusText.innerText = "ስርጭቱ በመፈለግ ላይ ነው... (Connecting...)";
+                
                 audio.play()
                     .then(() => {
                         playBtn.innerText = "⏸ PAUSE RADIO";
