@@ -9,7 +9,6 @@
             --primary: #0056b3;
             --secondary: #f8f9fa;
             --dark: #212529;
-            --accent: #dc3545;
             --fb-color: #1877f2;
         }
         body {
@@ -82,21 +81,16 @@
             font-size: 22px;
         }
         
-        /* Forced Visibility AMECO-Style Native Audio Player */
-        .ameco-audio-wrapper {
-            margin: 30px auto;
-            padding: 15px;
-            background-color: #f1f3f4;
-            border-radius: 50px;
-            max-width: 100%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: block; /* Forces block layout rendering */
-        }
-        .ameco-audio-wrapper audio {
-            width: 100%; /* Forces player to stretch full width */
-            display: block; /* Prevents browser rendering dropouts */
-            height: 54px; /* Forces explicit native controls height */
-            outline: none;
+        /* Secure Cloud-Based Player Architecture */
+        .cloud-player-wrapper {
+            margin: 25px auto 10px auto;
+            width: 100%;
+            max-width: 400px;
+            min-height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
         }
 
         .phone-list {
@@ -163,17 +157,14 @@
     </header>
 
     <div class="container">
-        <!-- AMECO Style Direct Framework Player Card -->
+        <!-- Secure Cloud Framework Player Card -->
         <div class="card">
             <h2>ቀጥታ ስርጭት (Live Audio Player)</h2>
             <p>በቀጥታ ለማዳመጥ ከታች ያለውን ማጫወቻ ይጠቀሙ</p>
             
-            <div class="ameco-audio-wrapper">
-                <!-- Direct stream binding with hardcoded style rendering locks -->
-                <audio controls preload="none">
-                    <source src="https://zeno.fm" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
+            <div class="cloud-player-wrapper">
+                <!-- Using Zeno's official cloud integration layout script to bypass stream timeout drops -->
+                <script src="https://zeno.fm"></script>
             </div>
         </div>
 
